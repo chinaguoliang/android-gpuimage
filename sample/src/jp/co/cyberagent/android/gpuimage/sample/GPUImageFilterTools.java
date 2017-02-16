@@ -301,7 +301,7 @@ public class GPUImageFilterTools {
                 return new GPUImageBilateralFilter();
 
             case TRANSFORM2D:
-                return new GPUImageTransformFilter();
+                return new GPUImageBeautyFilter();
 
             default:
                 throw new IllegalStateException("No filter of that type!");

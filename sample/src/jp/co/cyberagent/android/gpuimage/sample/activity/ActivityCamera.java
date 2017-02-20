@@ -23,6 +23,7 @@ import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
 import android.hardware.Camera.Parameters;
 import android.net.Uri;
+import android.opengl.EGL14;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.Environment;
@@ -48,6 +49,7 @@ import jp.co.cyberagent.android.gpuimage.sample.GPUImageFilterTools.OnGpuImageFi
 import jp.co.cyberagent.android.gpuimage.sample.R;
 import jp.co.cyberagent.android.gpuimage.sample.utils.CameraHelper;
 import jp.co.cyberagent.android.gpuimage.sample.utils.CameraHelper.CameraInfo2;
+import rencoder.MediaMuxerRunnable;
 
 public class ActivityCamera extends Activity implements OnSeekBarChangeListener, OnClickListener {
 
@@ -77,6 +79,61 @@ public class ActivityCamera extends Activity implements OnSeekBarChangeListener,
             cameraSwitchView.setVisibility(View.GONE);
         }
     }
+
+//    /**
+//     * start resorcing
+//     * This is a sample project and call this on UI thread to avoid being complicated
+//     * but basically this should be called on private thread because prepareing
+//     * of encoder is heavy work
+//     */
+//    MediaMuxerWrapper mMuxer;
+//    private void startRecording() {
+//        try {
+//            mMuxer = new MediaMuxerWrapper(".mp4");	// if you record audio only, ".m4a" is also OK.
+//            if (true) {
+//                // for video capturing
+//                new MediaVideoEncoder(mMuxer, mMediaEncoderListener, 720,1080);
+//            }
+//            if (true) {
+//                // for audio capturing
+//                new MediaAudioEncoder(mMuxer, mMediaEncoderListener);
+//            }
+//            mMuxer.prepare();
+//            mMuxer.startRecording();
+//        } catch (final IOException e) {
+//        }
+//    }
+//
+//    /**
+//     * callback methods from encoder
+//     */
+//    private final MediaEncoder.MediaEncoderListener mMediaEncoderListener = new MediaEncoder.MediaEncoderListener() {
+//        @Override
+//        public void onPrepared(final MediaEncoder encoder) {
+//            if (encoder instanceof MediaVideoEncoder) {
+//
+//            }
+//        }
+//
+//        @Override
+//        public void onStopped(final MediaEncoder encoder) {
+//            if (encoder instanceof MediaVideoEncoder) {
+//
+//            }
+//                //mCameraView.setVideoEncoder(null);
+//        }
+//    };
+//
+//    /**
+//     * request stop recording
+//     */
+//    private void stopRecording() {
+//        if (mMuxer != null) {
+//            mMuxer.stopRecording();
+//            mMuxer = null;
+//            // you should not wait here
+//        }
+//    }
 
     @Override
     protected void onResume() {
@@ -287,6 +344,7 @@ public class ActivityCamera extends Activity implements OnSeekBarChangeListener,
         }
 
         private void releaseCamera() {
+            MediaMuxerRunnable.stopMuxer();
             mCameraInstance.setPreviewCallback(null);
             mCameraInstance.release();
             mCameraInstance = null;

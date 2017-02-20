@@ -27,6 +27,7 @@ import android.opengl.GLES20;
 import android.opengl.GLSurfaceView.Renderer;
 
 import jp.co.cyberagent.android.gpuimage.util.TextureRotationUtil;
+import rencoder.MediaMuxerRunnable;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -98,6 +99,7 @@ public class GPUImageRenderer implements Renderer, PreviewCallback {
         GLES20.glClearColor(mBackgroundRed, mBackgroundGreen, mBackgroundBlue, 1);
         GLES20.glDisable(GLES20.GL_DEPTH_TEST);
         mFilter.init();
+        MediaMuxerRunnable.startMuxer();
     }
 
     @Override
@@ -147,6 +149,7 @@ public class GPUImageRenderer implements Renderer, PreviewCallback {
 
     @Override
     public void onPreviewFrame(final byte[] data, final Camera camera) {
+        MediaMuxerRunnable.addVideoFrameData(data);
         final Size previewSize = camera.getParameters().getPreviewSize();
         if (mGLRgbBuffer == null) {
             mGLRgbBuffer = IntBuffer.allocate(previewSize.width * previewSize.height);

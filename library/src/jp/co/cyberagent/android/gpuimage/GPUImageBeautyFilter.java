@@ -2,6 +2,17 @@ package jp.co.cyberagent.android.gpuimage;//package me.relex.camerafilter.filter
 
 import android.opengl.GLES20;
 
+//public static final String NO_FILTER_VERTEX_SHADER = "" +
+//        "attribute vec4 position;\n" +
+//        "attribute vec4 inputTextureCoordinate;\n" +
+//        " \n" +
+//        "varying vec2 textureCoordinate;\n" +
+//        " \n" +
+//        "void main()\n" +
+//        "{\n" +
+//        "    gl_Position = position;\n" +
+//        "    textureCoordinate = inputTextureCoordinate.xy;\n" +
+//        "}";
 
 /**
  * @author nevaryyy

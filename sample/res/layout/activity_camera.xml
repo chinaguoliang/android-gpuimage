@@ -17,6 +17,22 @@
         android:padding="10dp"
         android:src="@drawable/ic_switch_camera" />
 
+    <Button
+        android:id="@+id/button_start_record"
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img_switch_camera"
+        android:text="Start Record" />
+
+    <Button
+        android:id="@+id/button_end_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/button_start_record"
+        android:text="End Record" />
+
     <LinearLayout
         android:id="@+id/bar"
         android:layout_width="match_parent"

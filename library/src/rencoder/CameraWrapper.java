@@ -206,7 +206,7 @@ public class CameraWrapper {
         }
 
         private void startRecording() {
-            MediaMuxerRunnable.startMuxer();
+
         }
 
         private void stopRecording() {

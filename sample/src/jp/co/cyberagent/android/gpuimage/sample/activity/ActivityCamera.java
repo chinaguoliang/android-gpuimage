@@ -78,6 +78,21 @@ public class ActivityCamera extends Activity implements OnSeekBarChangeListener,
         if (!mCameraHelper.hasFrontCamera() || !mCameraHelper.hasBackCamera()) {
             cameraSwitchView.setVisibility(View.GONE);
         }
+
+        this.findViewById(R.id.button_start_record).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                MediaMuxerRunnable.startMuxer();
+            }
+        });
+
+        this.findViewById(R.id.button_end_record).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                MediaMuxerRunnable.stopMuxer();
+            }
+        });
+
     }
 
 //    /**
@@ -344,7 +359,7 @@ public class ActivityCamera extends Activity implements OnSeekBarChangeListener,
         }
 
         private void releaseCamera() {
-            MediaMuxerRunnable.stopMuxer();
+
             mCameraInstance.setPreviewCallback(null);
             mCameraInstance.release();
             mCameraInstance = null;

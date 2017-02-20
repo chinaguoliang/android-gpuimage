@@ -99,7 +99,6 @@ public class GPUImageRenderer implements Renderer, PreviewCallback {
         GLES20.glClearColor(mBackgroundRed, mBackgroundGreen, mBackgroundBlue, 1);
         GLES20.glDisable(GLES20.GL_DEPTH_TEST);
         mFilter.init();
-        MediaMuxerRunnable.startMuxer();
     }
 
     @Override
